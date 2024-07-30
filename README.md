@@ -42,9 +42,11 @@ It contains `284,807 transactions`, with `492` cases of `fraud`.
 ⇒ Use this dataset for predictive models might cause a lot of errors because the models will tend to overfit since it gonna assume the most transactions are Non-Fraud
 
 ## Data Preparation
-1. [Data Cleaning](#data-cleaning)
-2. [Data Transformation](#data-transformation)
-3. [Feature Selection](#feature-selection)
+[1. Data Cleaning](#data-cleaning)
+
+[2. Data Transformation](#data-transformation)
+
+[3. Feature Selection](#feature-selection)
 
 ### 1. Data Cleaning 
 - Check for `Null` value
@@ -96,5 +98,14 @@ and `473 fraud`.
 
 ### 3. Feature Selection
 - Define Predictors `X` and Target `y`
+- Feature Selection on `X` 
 - Resampling: `None`, `Under-sampling`, `Combine`
 
+#### Feature Selection on `X` only
+There are a couple options for feature selection when working with a `PCA dataset`:
+- `Manual Feature Selection`: This involves using domain knowledge to select the most relevant principal components. ⇒ This approach is beneficial if we have a deep understanding of the domain and can interpret the components effectively.
+- `Automated Feature Selection`: We can use Machine Learning techniques to automate feature selection process. ⇒ These techniques can help us identify the most important features based on statistical methods or model-based approaches without requiring extensive domain knowledge.
+
+⇒ I am gonna `use Automated Feature Selection` as the features are almost anonymized
+
+**Feature Selection Techniques:** Use one or a combination of `Filter`, `Wrapper`, and `Embedded methods`.
