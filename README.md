@@ -5,7 +5,7 @@ A machine learning project to detect fraudulent credit card transactions using b
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Dataset](#dataset)
+- [Data Understanding](#data-understanding)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
@@ -15,15 +15,24 @@ A machine learning project to detect fraudulent credit card transactions using b
 - [License](#license)
 - [Contact](#contact)
 
+
 ## Introduction
+Credit card fraud detection is crucial for financial institutions to minimize losses and protect customers. 
 
-Credit card fraud detection is crucial for financial institutions to minimize losses and protect customers. This project explores various machine learning models to identify fraudulent transactions in a dataset of credit card transactions. We compare the performance of supervised and unsupervised learning techniques to determine the most effective approach.
+## Data Understanding
 
-## Dataset
+### Data Collection (Source)
+The dataset contains transactions made by credit cards in September 2013 by European cardholders, and also available in Kaggle: [Kaggle Credit Card Fraud Detection dataset](https://www.kaggle.com/mlg-ulb/creditcardfraud). 
+- It contains 284,807 transactions, with 492 cases of fraud.
+- The features include transaction time, amount, and anonymized variables.
 
-The dataset used in this project is the [Kaggle Credit Card Fraud Detection dataset](https://www.kaggle.com/mlg-ulb/creditcardfraud). It contains 284,807 transactions, with 492 cases of fraud. The features include transaction time, amount, and anonymized variables.
+#### Objective
+This project explores various machine learning models to identify fraudulent transactions in a dataset of credit card transactions. 
+- We **compare the performance** of **supervised** and **unsupervised learning techniques** to determine the most effective approach.
 
 **Preprocessing Steps:**
-- Data cleaning
-- Normalization of features
-- Handling imbalanced classes
+- Load the dataset
+- Data Types
+- Class Distribution
+
+
