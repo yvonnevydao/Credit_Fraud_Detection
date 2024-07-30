@@ -98,8 +98,10 @@ and `473 fraud`.
 
 ### 3. Feature Selection
 - Define Predictors `X` and Target `y`
-- Feature Selection on `X` 
-- Resampling: `None`, `Under-sampling`, `Combine`
+- Feature Selection on `X`
+- Split the data into training and test sets
+- Re-sampling on the training set: `None`, `Under-sampling`, `Combine`
+- Dimensionality Reduction and Clustering (Visualization)
 
 #### Feature Selection on `X` only
 There are a couple options for feature selection when working with a `PCA dataset`:
@@ -109,3 +111,55 @@ There are a couple options for feature selection when working with a `PCA datase
 ⇒ I am gonna `use Automated Feature Selection` as the features are almost anonymized
 
 **Feature Selection Techniques:** Use one or a combination of `Filter`, `Wrapper`, and `Embedded methods`.
+
+#### Split the data into training and test sets
+I use `random_state=seed` and `test_size=0.3` 
+
+![class_distribution_Trainset](https://github.com/user-attachments/assets/2af3d97c-e25a-4da8-b0fe-57a6012e38a0)
+
+Class Distribution (Training set): `198,290 Non-Fraud` and `318 Fraud`
+
+![class_distribution_Testset](https://github.com/user-attachments/assets/10204a38-730b-428d-abfd-a6425c17431f)
+
+Class Distribution (Test set): `84,963 Non-Fraud` and `155 Fraud`
+
+#### `Under-sampling`
+There are many techniques for `Under-sampling`, and I am using `RandomUnderSampler` in this case.
+
+![Undersampling](https://github.com/user-attachments/assets/d2fb75a6-4c0f-49ef-8320-e7800bd14030)
+
+⇒ Under-sampling reduced the size of **Non-Fraud**, and the class distribution on the trainning set: `318 Fraud` and `318 Non-Fraud`
+
+⇒ `Very Fast` to Train models
+
+#### Combine `Over-sampling` and `Under-sampling`
+I've created a Pipeline for combine of Over-sampling and Under-sampling using: 
+- `RandomOverSampler(sampling_strategy=0.01)`
+- and `RandomUnderSampler(sampling_strategy=0.05)`
+
+**NOTE:** If we are using Combine method without changing `sampling_strategy`, it will **increase** the `Fraud` transactions = `Non-Fraud` transactions. ⇒ 0.5 Fraud and 0.5 Non-Fraud
+
+![class_distribution_COMBINE](https://github.com/user-attachments/assets/12127079-04a4-4210-8923-750832636f25)
+
+⇒ Under-sampling reduced the size of **Non-Fraud** and Over-sampling increased the size of **Fraud**. 
+
+⇒ The class distribution on the trainning set: `39,640 Non-Fraud` and `1,982 Fraud`
+
+⇒ The Re-sampling dataset is not really Balanced, and it required a lot of time to trainning models
+
+#### Dimensionality Reduction and Clustering (Visualization)
+Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`Under-sampling`):
+
+- T-SNE took: 1.89 s
+- PCA took: 0.0045 s
+- TruncatedSVD took: 0.0034 s
+  
+![Visualizatio_Undersampling](https://github.com/user-attachments/assets/eb476383-ce2f-40ce-8e15-73839e6c189c)
+
+Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`COMBINE`):
+
+- T-SNE took: 101.41 s
+- PCA took: 0.0148 s
+- TruncatedSVD took: 0.0714 s
+
+⇒ I don't even want to try `t-SNE`, `PCA`, and `SVD` on `Non-Resampling` dataset, as it took a lot of time to run. 
