@@ -20,10 +20,9 @@ A machine learning project to detect fraudulent credit card transactions using b
 Credit card fraud detection is crucial for financial institutions to minimize losses and protect customers. 
 
 ## Data Understanding
-
 #### Data Collection (Source)
 The dataset contains transactions made by credit cards in September 2013 by European cardholders, and also available in Kaggle: [Kaggle Credit Card Fraud Detection dataset](https://www.kaggle.com/mlg-ulb/creditcardfraud). 
-- The features include transaction time, amount, and anonymized variables.
+- The features include transaction `Time`, `Amount`, and `anonymized variables`.
 
 #### Objective
 This project explores various machine learning models to identify fraudulent transactions in a dataset of credit card transactions. 
@@ -36,13 +35,17 @@ This project explores various machine learning models to identify fraudulent tra
 
 ![class_distribution_pie](https://github.com/user-attachments/assets/031335da-ac64-4231-9b78-a081832d99a8)
 
-It contains 284,807 transactions, with 492 cases of fraud.
+It contains `284,807 transactions`, with `492` cases of `fraud`.
 
 ⇒ As we can see, the dataset is **very imbalanced** with is about **0.17% Fraud** transaction.
   
 ⇒ Use this dataset for predictive models might cause a lot of errors because the models will tend to overfit since it gonna assume the most transactions are Non-Fraud
 
 ## Data Preparation
+1. [Data Cleaning](#data-cleaning)
+2. [Data Transformation](#data-transformation)
+3. [Feature Selection](#feature-selection)
+
 ### 1. Data Cleaning 
 - Check for `Null` value
 - Handling Duplicates
@@ -91,4 +94,7 @@ and `473 fraud`.
 
 ⇒ There is no Strong Correlation (larger than 0.70 and smaller than -0.70)
 
+### 3. Feature Selection
+- Define Predictors `X` and Target `y`
+- Resampling: `None`, `Under-sampling`, `Combine`
 
