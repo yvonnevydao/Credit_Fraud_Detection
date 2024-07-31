@@ -7,9 +7,8 @@ A machine learning project to detect fraudulent credit card transactions using b
 - [Introduction](#introduction)
 - [Data Understanding](#data-understanding)
 - [Data Preparation](#data-preparation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
 - [Modeling](#modeling)
+- [Project Structure](#project-structure)
 - [Results](#results)
 - [Contributing](#contributing)
 - [License](#license)
@@ -32,6 +31,9 @@ This project explores various machine learning models to identify fraudulent tra
 - Load the dataset
 - Data Types
 - Class Distribution
+  
+Number `column` of the dataset: `284,807`
+Number `row` of the dataset: `31`
 
 ![class_distribution_pie](https://github.com/user-attachments/assets/031335da-ac64-4231-9b78-a081832d99a8)
 
@@ -97,13 +99,13 @@ and `473 fraud`.
 ⇒ There is no Strong Correlation (larger than 0.70 and smaller than -0.70)
 
 ### 3. Feature Selection
-- Define Predictors `X` and Target `y`
-- Feature Selection on `X`
-- Split the data into training and test sets
-- Re-sampling on the training set: `None`, `Under-sampling`, `Combine`
-- Dimensionality Reduction and Clustering (Visualization)
+- 3.1 Define Predictors `X` and Target `y`
+- 3.2 Feature Selection on `X`
+- 3.3 Split the data into training and test sets
+- 3.4 Re-sampling on the training set: `None`, `Under-sampling`, `Combine`
+- 3.5 Dimensionality Reduction and Clustering (Visualization)
 
-#### Feature Selection on `X` only
+#### 3.2 Feature Selection on `X` only
 There are a couple options for feature selection when working with a `PCA dataset`:
 - `Manual Feature Selection`: This involves using domain knowledge to select the most relevant principal components. ⇒ This approach is beneficial if we have a deep understanding of the domain and can interpret the components effectively.
 - `Automated Feature Selection`: We can use Machine Learning techniques to automate feature selection process. ⇒ These techniques can help us identify the most important features based on statistical methods or model-based approaches without requiring extensive domain knowledge.
@@ -112,7 +114,7 @@ There are a couple options for feature selection when working with a `PCA datase
 
 **Feature Selection Techniques:** Use one or a combination of `Filter`, `Wrapper`, and `Embedded methods`.
 
-#### Split the data into training and test sets
+#### 3.3 Split the data into training and test sets
 I use `random_state=seed` and `test_size=0.3` 
 
 ![class_distribution_Trainset](https://github.com/user-attachments/assets/2af3d97c-e25a-4da8-b0fe-57a6012e38a0)
@@ -123,7 +125,7 @@ Class Distribution (Training set): `198,290 Non-Fraud` and `318 Fraud`
 
 Class Distribution (Test set): `84,963 Non-Fraud` and `155 Fraud`
 
-#### `Under-sampling`
+#### 3.4.1 `Under-sampling`
 There are many techniques for `Under-sampling`, and I am using `RandomUnderSampler` in this case.
 
 ![Undersampling](https://github.com/user-attachments/assets/d2fb75a6-4c0f-49ef-8320-e7800bd14030)
@@ -132,7 +134,7 @@ There are many techniques for `Under-sampling`, and I am using `RandomUnderSampl
 
 ⇒ `Very Fast` to Train models
 
-#### Combine `Over-sampling` and `Under-sampling`
+#### 3.4.2 Combine `Over-sampling` and `Under-sampling`
 I've created a Pipeline for combine of Over-sampling and Under-sampling using: 
 - `RandomOverSampler(sampling_strategy=0.01)`
 - and `RandomUnderSampler(sampling_strategy=0.05)`
@@ -147,19 +149,38 @@ I've created a Pipeline for combine of Over-sampling and Under-sampling using:
 
 ⇒ The Re-sampling dataset is not really Balanced, and it required a lot of time to trainning models
 
-#### Dimensionality Reduction and Clustering (Visualization)
+#### 3.5 Dimensionality Reduction and Clustering (Visualization)
 Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`Under-sampling`):
 
-- T-SNE took: 1.89 s
-- PCA took: 0.0045 s
-- TruncatedSVD took: 0.0034 s
+- T-SNE took: 1.62 s
+- PCA took: 0.0042 s
+- TruncatedSVD took: 0.0036 s
   
 ![Visualizatio_Undersampling](https://github.com/user-attachments/assets/eb476383-ce2f-40ce-8e15-73839e6c189c)
 
 Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`COMBINE`):
 
-- T-SNE took: 101.41 s
-- PCA took: 0.0148 s
-- TruncatedSVD took: 0.0714 s
+- T-SNE took: 94.65 s
+- PCA took: 0.0058 s
+- TruncatedSVD took: 0.0814 s
+  
+⇒ As we can see, T-SNE took more time to cluster, but it seem to be better at clustering??
+
+![Visualizatio_COMBINE](https://github.com/user-attachments/assets/43dafab6-e3f1-42bf-b6b9-90f73ab7d219)
+
 
 ⇒ I don't even want to try `t-SNE`, `PCA`, and `SVD` on `Non-Resampling` dataset, as it took a lot of time to run. 
+
+## Modeling
+
+[1. Learning Curves (on each dataset)](#learning-curves)
+
+[2. Choose Model](#choose-model)
+
+[3. Feature Selection](#feature-selection)
+
+### 1. Learning Curves (on each dataset)
+
+Learning Curves for `LogisticRegression` for each dataset: `Non-Resampling`, `Under-Sampling`, and `Combine`
+
+I am using `KFold = 5`
