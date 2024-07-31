@@ -152,17 +152,22 @@ I've created a Pipeline for combine of Over-sampling and Under-sampling using:
 #### 3.5 Dimensionality Reduction and Clustering (Visualization)
 Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`Under-sampling`):
 
-- T-SNE took: 1.89 s
-- PCA took: 0.0045 s
-- TruncatedSVD took: 0.0034 s
+- T-SNE took: 1.62 s
+- PCA took: 0.0042 s
+- TruncatedSVD took: 0.0036 s
   
 ![Visualizatio_Undersampling](https://github.com/user-attachments/assets/eb476383-ce2f-40ce-8e15-73839e6c189c)
 
 Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`COMBINE`):
 
-- T-SNE took: 101.41 s
-- PCA took: 0.0148 s
-- TruncatedSVD took: 0.0714 s
+- T-SNE took: 94.65 s
+- PCA took: 0.0058 s
+- TruncatedSVD took: 0.0814 s
+  
+⇒ As we can see, T-SNE took more time to cluster, but it seem to be better at clustering??
+
+![Visualizatio_COMBINE](https://github.com/user-attachments/assets/43dafab6-e3f1-42bf-b6b9-90f73ab7d219)
+
 
 ⇒ I don't even want to try `t-SNE`, `PCA`, and `SVD` on `Non-Resampling` dataset, as it took a lot of time to run. 
 
@@ -170,7 +175,7 @@ Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`COMBINE`):
 
 [1. Learning Curves (on each dataset)](#learning-curves)
 
-[2. Data Transformation](#data-transformation)
+[2. Choose Model](#choose-model)
 
 [3. Feature Selection](#feature-selection)
 
