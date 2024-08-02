@@ -169,7 +169,10 @@ Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`COMBINE`):
 ![Visualizatio_COMBINE](https://github.com/user-attachments/assets/43dafab6-e3f1-42bf-b6b9-90f73ab7d219)
 
 
-⇒ I don't even want to try `t-SNE`, `PCA`, and `SVD` on `Non-Resampling` dataset, as it took a lot of time to run. 
+⇒ I don't even want to try `t-SNE` on `Non-Resampling` dataset, as it took a lot of time to run. 
+
+![Visualizatio_NONRESAMPLING](https://github.com/user-attachments/assets/22249b99-e823-469c-b379-0ff2fffd4af4)
+
 
 ## Modeling
 
@@ -183,4 +186,30 @@ Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`COMBINE`):
 
 Learning Curves for `LogisticRegression` for each dataset: `Non-Resampling`, `Under-Sampling`, and `Combine`
 
-I am using `KFold = 5`
+I am using `KFold(n_splits=5)` 
+
+#### Compare Learning Curves for `Non-Resampling` and `Undersampling` dataset
+
+**Non-Resampling Dataset:**
+
+![learningCurve_NON_SAMPLING](https://github.com/user-attachments/assets/51378759-8592-4fb2-866a-08b89a648285)
+
+⇒ Higher overall accuracy for both training and cross-validation scores.
+
+⇒ Very small gap between training and cross-validation scores, indicating low bias and low variance.
+
+⇒ More samples leading to stable and high performance.
+
+**Undersampling (Resampling) Dataset:**
+
+![learningCurve_UNDERSAMPLING](https://github.com/user-attachments/assets/7505950e-8261-46e9-ad55-5f0299cc82b1)
+
+⇒ Lower cross-validation accuracy compared to the non-resampling dataset.
+
+⇒ Larger gap between training and cross-validation scores, indicating higher variance and potential overfitting.
+
+⇒ Stable but lower performance on unseen data with fewer samples.
+
+**CONCLUSION:**
+
+⇒ The learning curve for the non-resampling dataset is better. It shows higher accuracy, both in training and cross-validation, and a smaller gap between the two, indicating better generalization and less overfitting. The undersampling dataset's learning curve indicates more variance and lower generalization capability.
