@@ -178,9 +178,9 @@ Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`COMBINE`):
 
 [1. Learning Curves (on each dataset)](#learning-curves)
 
-[2. Choose Model](#choose-model)
+[2. Choose Models](#choose-models)
 
-[3. Feature Selection](#feature-selection)
+[3. Using `GridSearchCV` for exploring hyper parameters](#using-GridSearchCV)
 
 ### 1. Learning Curves (on each dataset)
 
@@ -213,3 +213,38 @@ I am using `KFold(n_splits=5)`
 **CONCLUSION:**
 
 ⇒ The learning curve for the non-resampling dataset is better. It shows higher accuracy, both in training and cross-validation, and a smaller gap between the two, indicating better generalization and less overfitting. The undersampling dataset's learning curve indicates more variance and lower generalization capability.
+
+### 2. Choose Models
+There are many ways to go about this, however a rather simple and good first pass attempt is to just train a few different models on the same data and see what score they each achieve “out of the box”.
+
+As we will see later, we can take the top 4 best performing models and tune them each individually to get even better results.
+
+In order to score each of the model I will be using a indicator called **Area under the Curve**.
+
+⇒ For each dataset, I will try 7 difference models: 
+
+1. Logistic Regression
+2. K-Nearest Neighbour
+3. Decision Tree
+4. Random Forest
+5. XGBoost
+6. Support Vector Machine (SVM)
+7. Naive Bayes
+   
+#### 2.1 Undersampling
+
+<img width="196" alt="image" src="https://github.com/user-attachments/assets/92efa18a-e972-457b-a443-8114574c21de">
+
+⇒ For `Undersampling` dataset, from the 7 scores above, the top 4 performers are: SVM, XGB, RF, LR. We will move ahead and fine tune them.
+
+#### 2.2 Non-Resampling
+
+<img width="201" alt="image" src="https://github.com/user-attachments/assets/c2c340da-5265-46b6-b8d2-8c3a03a73f91">
+
+⇒ For `Non-Resampling` dataset, from the 7 scores above, the top 4 performers are: LR, NB, SVM, RF. We will move ahead and fine tune them.
+
+#### 2.3 Combine Resampling
+
+<img width="200" alt="image" src="https://github.com/user-attachments/assets/fd49c4a8-d6a7-47e9-9735-436fb818ca6a">
+
+⇒ For `Combine Resampling` dataset, from the 7 scores above, the top 4 performers are: RF, KNN, DT, XGB. We will move ahead and fine tune them.
