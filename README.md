@@ -169,7 +169,10 @@ Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`COMBINE`):
 ![Visualizatio_COMBINE](https://github.com/user-attachments/assets/43dafab6-e3f1-42bf-b6b9-90f73ab7d219)
 
 
-⇒ I don't even want to try `t-SNE`, `PCA`, and `SVD` on `Non-Resampling` dataset, as it took a lot of time to run. 
+⇒ I don't even want to try `t-SNE` on `Non-Resampling` dataset, as it took a lot of time to run. 
+
+![Visualizatio_NONRESAMPLING](https://github.com/user-attachments/assets/22249b99-e823-469c-b379-0ff2fffd4af4)
+
 
 ## Modeling
 
