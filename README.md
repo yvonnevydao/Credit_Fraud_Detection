@@ -1,4 +1,4 @@
-# Credit Card Fraud Detection
+# Credit Card Fraud Detection (ON-GOING)
 
 A machine learning project to detect fraudulent credit card transactions using both supervised and unsupervised learning techniques.
 
@@ -248,3 +248,5 @@ In order to score each of the model I will be using a indicator called **Area un
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/fd49c4a8-d6a7-47e9-9735-436fb818ca6a">
 
 ⇒ For `Combine Resampling` dataset, from the 7 scores above, the top 4 performers are: RF, KNN, DT, XGB. We will move ahead and fine tune them.
+
+## NOT DONE...
