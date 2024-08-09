@@ -253,7 +253,7 @@ In order to score each of the model I will be using a indicator called **Area un
 
 ⇒ The scores are significantly higher in this dataset.
 
-#### INTERPRET:
+#### INTERPRET
 ⇒ It is indeed expected for the Non-Resampling dataset to have lower AUC scores compared to the resampled datasets. This is because resampling techniques (like undersampling and combined resampling) help address the class imbalance, allowing models to perform better on the minority class, thus improving the overall AUC scores.
 
 ### 3. Using `GridSearchCV` for exploring hyper parameters
@@ -271,12 +271,33 @@ The more area that we have under the curve, the better the model was at predicti
 - `NB` : {'var_smoothing': 0.001} ⇒  Training AUC score of `0.959`
 - `SVM` : {'C': 100} ⇒  Training AUC score of `0.9999`
 
-#### 3.3  Combine Resampling
+#### 3.3 Best parameters for Combine Resampling
 
 - `RF` :  ⇒  Training AUC score of
-- `KNN` :  ⇒  Training AUC score of
+- `KNN` : {'metric': 'manhattan', 'n_neighbors': 9, 'weights': 'distance'} ⇒  Training AUC score of `1.0`
 - `DT` :  ⇒  Training AUC score of 
 
 ⇒ **It took me a day to train !!!**
 
 ## Evaluation
+
+### Compare the Training and Test AUC scores 
+
+![compareAUC_combined3datasets](https://github.com/user-attachments/assets/d4892ead-1cca-4077-90a5-f81fafadaf4c)
+
+#### INTERPRET
+
+### Compare Difference Metrics for each dataset
+
+**UNDER-SAMPLING**
+
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/d942f23e-6420-49ef-a6dc-b822300d069c">
+
+**NON-RESAMPLING**
+
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/79fa6b5c-7ff3-4538-9d6a-4032552a842b">
+
+**COMBINE RESAMPLING**
+
+<img width="400" alt="image" src="https://github.com/user-attachments/assets/c7d2c5e1-2fd6-464f-894e-f38886426364">
+
