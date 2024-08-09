@@ -1,4 +1,4 @@
-# Credit Card Fraud Detection (ON-GOING)
+# Credit Card Fraud Detection (ON-GOING !!)
 
 A machine learning project to detect fraudulent credit card transactions using both supervised and unsupervised learning techniques.
 
@@ -8,7 +8,7 @@ A machine learning project to detect fraudulent credit card transactions using b
 - [Data Understanding](#data-understanding)
 - [Data Preparation](#data-preparation)
 - [Modeling](#modeling)
-- [Project Structure](#project-structure)
+- [Evaluation](#evaluation)
 - [Results](#results)
 - [Contributing](#contributing)
 - [License](#license)
@@ -301,3 +301,4 @@ The more area that we have under the curve, the better the model was at predicti
 
 <img width="400" alt="image" src="https://github.com/user-attachments/assets/c7d2c5e1-2fd6-464f-894e-f38886426364">
 
+# NOT DONE !! 
