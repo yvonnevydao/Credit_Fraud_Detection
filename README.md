@@ -1,4 +1,4 @@
-# Credit Card Fraud Detection
+# Credit Card Fraud Detection (ON-GOING)
 
 A machine learning project to detect fraudulent credit card transactions using both supervised and unsupervised learning techniques.
 
@@ -178,9 +178,9 @@ Try `t-SNE`, `PCA`, and `SVD` on Training Predictors (`COMBINE`):
 
 [1. Learning Curves (on each dataset)](#learning-curves)
 
-[2. Choose Model](#choose-model)
+[2. Choose Models](#choose-models)
 
-[3. Feature Selection](#feature-selection)
+[3. Using `GridSearchCV` for exploring hyper parameters](#using-GridSearchCV)
 
 ### 1. Learning Curves (on each dataset)
 
@@ -213,3 +213,70 @@ I am using `KFold(n_splits=5)`
 **CONCLUSION:**
 
 ⇒ The learning curve for the non-resampling dataset is better. It shows higher accuracy, both in training and cross-validation, and a smaller gap between the two, indicating better generalization and less overfitting. The undersampling dataset's learning curve indicates more variance and lower generalization capability.
+
+### 2. Choose Models
+There are many ways to go about this, however a rather simple and good first pass attempt is to just train a few different models on the same data and see what score they each achieve “out of the box”.
+
+As we will see later, we can take the top 3 best performing models and tune them each individually to get even better results.
+
+In order to score each of the model I will be using a indicator called **Area under the Curve**.
+
+⇒ For each dataset, I will try 7 difference models: 
+
+1. Logistic Regression
+2. K-Nearest Neighbour
+3. Decision Tree
+4. Random Forest
+5. XGBoost
+6. Support Vector Machine (SVM)
+7. Naive Bayes
+   
+#### 2.1 Undersampling
+
+<img width="196" alt="image" src="https://github.com/user-attachments/assets/92efa18a-e972-457b-a443-8114574c21de">
+
+⇒ For `Undersampling` dataset, from the 7 scores above, the top 3 performers are: SVM, XGB, RF. We will move ahead and fine tune them.
+
+#### 2.2 Non-Resampling
+
+<img width="201" alt="image" src="https://github.com/user-attachments/assets/c2c340da-5265-46b6-b8d2-8c3a03a73f91">
+
+⇒ For `Non-Resampling` dataset, from the 7 scores above, the top 3 performers are: LR, NB, SVM. We will move ahead and fine tune them.
+
+⇒ Notably, the AUC scores for this dataset are generally lower compared to the other datasets.
+
+#### 2.3 Combine Resampling
+
+<img width="200" alt="image" src="https://github.com/user-attachments/assets/fd49c4a8-d6a7-47e9-9735-436fb818ca6a">
+
+⇒ For `Combine Resampling` dataset, from the 7 scores above, the top 3 performers are: RF, KNN, DT. We will move ahead and fine tune them.
+
+⇒ The scores are significantly higher in this dataset.
+
+#### INTERPRET:
+⇒ It is indeed expected for the Non-Resampling dataset to have lower AUC scores compared to the resampled datasets. This is because resampling techniques (like undersampling and combined resampling) help address the class imbalance, allowing models to perform better on the minority class, thus improving the overall AUC scores.
+
+### 3. Using `GridSearchCV` for exploring hyper parameters
+The more area that we have under the curve, the better the model was at predicting classes and thus we have a higher rate of true positives while holding the number of false positives at a much lower rate. The big take away here is that a bigger AUC score will generally correspond to a better model.
+
+#### 3.1 Best parameters for Undersampling
+
+- `SVM` : {'C': 1, 'probability': True} ⇒  Training AUC score of `0.9877`
+- `XGB` : {} ⇒  Training AUC score of `1.0`
+- `RF` : {'criterion': 'entropy', 'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 100} ⇒  Training AUC score of `1.0`
+
+#### 3.2  Best parameters for Non-Resampling
+
+- `LR` : {'C': 0.1, 'max_iter': 100, 'penalty': 'l1', 'solver': 'liblinear'} ⇒  Training AUC score of `0.9788`
+- `NB` : {'var_smoothing': 0.001} ⇒  Training AUC score of `0.959`
+- `SVM` : {'C': 100} ⇒  Training AUC score of `0.9999`
+
+#### 3.3  Combine Resampling
+
+- `RF` :  ⇒  Training AUC score of
+- `KNN` :  ⇒  Training AUC score of
+- `DT` :  ⇒  Training AUC score of 
+
+⇒ **It took me a day to train !!!**
+
+## Evaluation
