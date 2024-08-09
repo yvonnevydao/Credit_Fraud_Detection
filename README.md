@@ -235,7 +235,7 @@ In order to score each of the model I will be using a indicator called **Area un
 
 <img width="196" alt="image" src="https://github.com/user-attachments/assets/92efa18a-e972-457b-a443-8114574c21de">
 
-⇒ For `Undersampling` dataset, from the 7 scores above, the top performers are: SVM, XGB, RF. We will move ahead and fine tune them.
+⇒ For `Undersampling` dataset, from the 7 scores above, the top 3 performers are: SVM, XGB, RF. We will move ahead and fine tune them.
 
 #### 2.2 Non-Resampling
 
@@ -261,18 +261,22 @@ The more area that we have under the curve, the better the model was at predicti
 
 #### 3.1 Best parameters for Undersampling
 
-- `SVM` : {'C': 1, 'probability': True} ⇒  Training AUC score of 0.9877
-- `XGB` : {} ⇒  Training AUC score of 1.0
-- `RF` : {'criterion': 'entropy', 'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 100} ⇒  Training AUC score of 1.0
+- `SVM` : {'C': 1, 'probability': True} ⇒  Training AUC score of `0.9877`
+- `XGB` : {} ⇒  Training AUC score of `1.0`
+- `RF` : {'criterion': 'entropy', 'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 100} ⇒  Training AUC score of `1.0`
 
 #### 3.2  Best parameters for Non-Resampling
 
-- `LR` : {'C': 0.1, 'max_iter': 100, 'penalty': 'l1', 'solver': 'liblinear'} ⇒  Training AUC score of 0.9788
-- `NB` : {'var_smoothing': 0.001} ⇒  Training AUC score of 0.959
-- `SVM` : {'C': 100} ⇒  Training AUC score of 0.9999
+- `LR` : {'C': 0.1, 'max_iter': 100, 'penalty': 'l1', 'solver': 'liblinear'} ⇒  Training AUC score of `0.9788`
+- `NB` : {'var_smoothing': 0.001} ⇒  Training AUC score of `0.959`
+- `SVM` : {'C': 100} ⇒  Training AUC score of `0.9999`
 
 #### 3.3  Combine Resampling
 
 - `RF` :  ⇒  Training AUC score of
 - `KNN` :  ⇒  Training AUC score of
 - `DT` :  ⇒  Training AUC score of 
+
+⇒ **It took me a day to train !!!**
+
+## Evaluation
