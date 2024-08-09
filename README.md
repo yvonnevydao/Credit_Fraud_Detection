@@ -217,7 +217,7 @@ I am using `KFold(n_splits=5)`
 ### 2. Choose Models
 There are many ways to go about this, however a rather simple and good first pass attempt is to just train a few different models on the same data and see what score they each achieve “out of the box”.
 
-As we will see later, we can take the top 4 best performing models and tune them each individually to get even better results.
+As we will see later, we can take the top 3 best performing models and tune them each individually to get even better results.
 
 In order to score each of the model I will be using a indicator called **Area under the Curve**.
 
@@ -235,18 +235,44 @@ In order to score each of the model I will be using a indicator called **Area un
 
 <img width="196" alt="image" src="https://github.com/user-attachments/assets/92efa18a-e972-457b-a443-8114574c21de">
 
-⇒ For `Undersampling` dataset, from the 7 scores above, the top 4 performers are: SVM, XGB, RF, LR. We will move ahead and fine tune them.
+⇒ For `Undersampling` dataset, from the 7 scores above, the top performers are: SVM, XGB, RF. We will move ahead and fine tune them.
 
 #### 2.2 Non-Resampling
 
 <img width="201" alt="image" src="https://github.com/user-attachments/assets/c2c340da-5265-46b6-b8d2-8c3a03a73f91">
 
-⇒ For `Non-Resampling` dataset, from the 7 scores above, the top 4 performers are: LR, NB, SVM, RF. We will move ahead and fine tune them.
+⇒ For `Non-Resampling` dataset, from the 7 scores above, the top 3 performers are: LR, NB, SVM. We will move ahead and fine tune them.
+
+⇒ Notably, the AUC scores for this dataset are generally lower compared to the other datasets.
 
 #### 2.3 Combine Resampling
 
 <img width="200" alt="image" src="https://github.com/user-attachments/assets/fd49c4a8-d6a7-47e9-9735-436fb818ca6a">
 
-⇒ For `Combine Resampling` dataset, from the 7 scores above, the top 4 performers are: RF, KNN, DT, XGB. We will move ahead and fine tune them.
+⇒ For `Combine Resampling` dataset, from the 7 scores above, the top 3 performers are: RF, KNN, DT. We will move ahead and fine tune them.
 
-## NOT DONE...
+⇒ The scores are significantly higher in this dataset.
+
+#### INTERPRET:
+⇒ It is indeed expected for the Non-Resampling dataset to have lower AUC scores compared to the resampled datasets. This is because resampling techniques (like undersampling and combined resampling) help address the class imbalance, allowing models to perform better on the minority class, thus improving the overall AUC scores.
+
+### 3. Using `GridSearchCV` for exploring hyper parameters
+The more area that we have under the curve, the better the model was at predicting classes and thus we have a higher rate of true positives while holding the number of false positives at a much lower rate. The big take away here is that a bigger AUC score will generally correspond to a better model.
+
+#### 3.1 Best parameters for Undersampling
+
+- `SVM` : {'C': 1, 'probability': True} ⇒  Training AUC score of 0.9877
+- `XGB` : {} ⇒  Training AUC score of 1.0
+- `RF` : {'criterion': 'entropy', 'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 100} ⇒  Training AUC score of 1.0
+
+#### 3.2  Best parameters for Non-Resampling
+
+- `LR` : {'C': 0.1, 'max_iter': 100, 'penalty': 'l1', 'solver': 'liblinear'} ⇒  Training AUC score of 0.9788
+- `NB` : {'var_smoothing': 0.001} ⇒  Training AUC score of 0.959
+- `SVM` : {'C': 100} ⇒  Training AUC score of 0.9999
+
+#### 3.3  Combine Resampling
+
+- `RF` :  ⇒  Training AUC score of
+- `KNN` :  ⇒  Training AUC score of
+- `DT` :  ⇒  Training AUC score of 
